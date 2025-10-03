@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+  cursor: none; /* Hide default cursor */
+  /* Hint compositor usage for transforms/opacity */
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  overflow-x: hidden;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  cursor: none; /* Hide default cursor */
+  position: relative;
+  background-color: black;
+  color: white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* FX theme variables (auto adapt via .dark) */
+:root {
+  /* Default to dark cosmic theme */
+  --fx-bg-1: #04040a; /* near-black */
+  --fx-bg-2: #080814; /* deep charcoal blue */
+  --fx-accent-1: #9b6bff; /* cosmic violet */
+  --fx-accent-2: #15c0c0; /* teal-cyan neon */
+  --fx-star: rgba(255, 255, 255, 0.95); /* bright stars */
+  --fx-dust: rgba(200, 220, 255, 0.04); /* faint space dust */
+}
+
+.dark {
+  /* Reinforce dark mode (same as default, safe for toggles) */
+  --fx-bg-1: #04040a;
+  --fx-bg-2: #080814;
+  --fx-accent-1: #c084fc;
+  --fx-accent-2: #2dd4bf;
+  --fx-star: rgba(255, 255, 255, 0.96);
+  --fx-dust: rgba(200, 220, 255, 0.05);
+}
+
+/* Hide default cursor on interactive elements */
+a,
+button,
+input,
+textarea,
+select {
+  cursor: none;
+}
+
+/* Section styling */
+section {
+  position: relative;
+  width: 100%;
+  
+  min-height: 100vh;
+  overflow: hidden;
+  contain: layout paint style; /* allow section to grow with content */
+}
+
+
+@font-face {
+  font-family: 'Progress';
+  src: url('./assets/fonts/PROGRESS PERSONAL USE.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Headplane';
+  src: url('./assets/fonts/HEADPLANE.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.panel {
+  width: 100%;
+  height: 100vh;
+}
+
+.pin-spacer {
+  height: 200vh;
+}
+
+
+/* Show default cursor on mobile */
+@media (max-width: 768px) {
+  html,
+  body,
+  a,
+  button,
+  input,
+  textarea,
+  select {
+    cursor: auto;
+  }
+}
+
+/* Reduced motion: disable non-essential animations */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* GPU friendly utilities */
+.will-change-transform { will-change: transform; }
+.will-change-opacity { will-change: opacity; }
+
+/* Responsive text sizing */
+@media (max-width: 640px) {
+  h1 {
+    font-size: 2.5rem !important;
+  }
+
+  h2 {
+    font-size: 2rem !important;
+  }
+
+  p {
+    font-size: 1rem !important;
+  }
+
+  .panel-title {
+    font-size: 2rem !important;
+  }
+
+  .panel-desc {
+    font-size: 1rem !important;
+  }
+}
+.z-50 {
+  z-index: 50; /* ensures text is always on top of any model */
+}
+
+
+@layer base {
+  * {
+    @apply border-border ;
+  }
+  body {
+    @apply bg-background text-foreground ;
+  }
+}
